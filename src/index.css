@@ -1,0 +1,1798 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* STUDIO 1.6 DESIGN DOCTRINE
+   ZERO blur. ZERO neon. ZERO softness.
+   ONLY sculptural shadows, tall typography, unapologetic depth, kinetic motion hierarchy.
+*/
+
+@layer base {
+  :root {
+    /* STUDIO 1.6 SACRED PALETTE */
+    --background: 40 4% 11%;
+    --background-secondary: 40 4% 13%;
+    --foreground: 40 10% 90%;
+    --foreground-muted: 40 6% 72%;
+    --foreground-subtle: 40 4% 56%;
+    
+    /* Primary Brand */
+    --primary: 40 10% 90%;
+    --primary-foreground: 40 4% 11%;
+    
+    /* Secondary */
+    --secondary: 40 4% 13%;
+    --secondary-foreground: 40 10% 90%;
+    
+    /* Accent - Warm Gold undertone */
+    --accent: 38 20% 18%;
+    --accent-foreground: 40 10% 90%;
+    
+    /* Muted */
+    --muted: 40 4% 16%;
+    --muted-foreground: 40 6% 72%;
+    
+    /* Card */
+    --card: 40 4% 13%;
+    --card-foreground: 40 10% 90%;
+    
+    /* Popover */
+    --popover: 40 4% 11%;
+    --popover-foreground: 40 10% 90%;
+    
+    /* Destructive */
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 40 10% 90%;
+    
+    /* Border & Input */
+    --border: 40 4% 20%;
+    --input: 40 4% 20%;
+    --ring: 40 10% 90%;
+    
+    /* RADIUS STANDARDS */
+    --radius: 18px;
+    --radius-primary: 18px;
+    --radius-mobile: 16px;
+
+    /* STRONGER SCULPTURAL SHADOW DOCTRINE */
+    --shadow-elevated: 0 6px 16px rgba(0, 0, 0, 0.45);
+    --shadow-deep: 0 10px 28px rgba(0, 0, 0, 0.55);
+    --shadow-cathedral: 0 14px 36px rgba(0, 0, 0, 0.65);
+    --shadow-inset: inset 0 3px 8px rgba(0, 0, 0, 0.5);
+    --shadow-engraved: inset 0 4px 12px rgba(0, 0, 0, 0.5);
+    
+    /* KINETIC MOTION DOCTRINE */
+    --motion-hover-rise: translateY(-4px) scale(1.02);
+    --motion-press-depth: translateY(2px) scale(0.98);
+    --motion-transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    /* SACRED GEOMETRY */
+    --grid-gutter: 24px;
+    --spacing-sacred: 32px;
+
+    /* Sidebar */
+    --sidebar-background: 40 4% 11%;
+    --sidebar-foreground: 40 10% 90%;
+    --sidebar-primary: 40 10% 90%;
+    --sidebar-primary-foreground: 40 4% 11%;
+    --sidebar-accent: 40 4% 16%;
+    --sidebar-accent-foreground: 40 10% 90%;
+    --sidebar-border: 40 4% 20%;
+    --sidebar-ring: 40 10% 90%;
+  }
+
+  .dark {
+    --background: 40 4% 11%;
+    --background-secondary: 40 4% 13%;
+    --foreground: 40 10% 90%;
+    --foreground-muted: 40 6% 72%;
+    --foreground-subtle: 40 4% 56%;
+    --primary: 40 10% 90%;
+    --primary-foreground: 40 4% 11%;
+    --secondary: 40 4% 13%;
+    --secondary-foreground: 40 10% 90%;
+    --accent: 38 20% 18%;
+    --accent-foreground: 40 10% 90%;
+    --muted: 40 4% 16%;
+    --muted-foreground: 40 6% 72%;
+    --card: 40 4% 13%;
+    --card-foreground: 40 10% 90%;
+    --popover: 40 4% 11%;
+    --popover-foreground: 40 10% 90%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 40 10% 90%;
+    --border: 40 4% 20%;
+    --input: 40 4% 20%;
+    --ring: 40 10% 90%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Helvetica Neue', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: 0.01em;
+  }
+
+  /* TALL TYPOGRAPHY DOCTRINE WITH ELEVATED TEXT-SHADOW */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Helvetica Neue', 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    text-shadow: var(--shadow-elevated);
+  }
+
+  h1 {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 200;
+    letter-spacing: -0.04em;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 300;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 400;
+  }
+
+  /* CUSTOM SCROLLBAR WITH CATHEDRAL DISCIPLINE */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #232321;
+    box-shadow: var(--shadow-cathedral);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #B8B6B1;
+    border-radius: 12px;
+    box-shadow: var(--shadow-inset);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9F9D99;
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #B8B6B1 #232321;
+  }
+}
+
+@layer components {
+  /* KINETIC INTERACTIVE DOCTRINE */
+  .kinetic {
+    transition: var(--motion-transition);
+  }
+
+  .kinetic:hover {
+    transform: var(--motion-hover-rise);
+  }
+
+  .kinetic:active {
+    transform: var(--motion-press-depth);
+  }
+
+  /* SCULPTURAL CARD WITH RADIUS */
+  .card-sculptural {
+    background: hsl(var(--card));
+    box-shadow: var(--shadow-deep);
+    border-radius: var(--radius-primary);
+    transition: var(--motion-transition);
+  }
+
+  .card-sculptural:hover {
+    box-shadow: var(--shadow-cathedral);
+    transform: var(--motion-hover-rise);
+  }
+
+  /* CATHEDRAL CONTAINER */
+  .cathedral {
+    box-shadow: var(--shadow-cathedral);
+    border-radius: var(--radius-primary);
+  }
+
+  /* ENGRAVED ELEMENT */
+  .engraved {
+    box-shadow: var(--shadow-engraved);
+    border-radius: var(--radius-primary);
+  }
+
+  /* ELEVATED ELEMENT */
+  .elevated {
+    box-shadow: var(--shadow-elevated);
+    border-radius: var(--radius-primary);
+  }
+
+  /* BUTTONIZED ELEMENT */
+  .buttonized {
+    border-radius: var(--radius-primary);
+    box-shadow: var(--shadow-deep);
+    transition: var(--motion-transition);
+  }
+
+  .buttonized:hover {
+    transform: var(--motion-hover-rise);
+    box-shadow: var(--shadow-cathedral);
+  }
+
+  .buttonized:active {
+    transform: var(--motion-press-depth);
+  }
+
+  /* NAV PILL STYLE */
+  .nav-pill {
+    border-radius: var(--radius-primary);
+    box-shadow: var(--shadow-deep);
+    padding: 12px 24px;
+    transition: var(--motion-transition);
+  }
+
+  .nav-pill:hover {
+    transform: var(--motion-hover-rise);
+  }
+
+  .nav-pill.active {
+    box-shadow: var(--shadow-cathedral);
+    transform: translateY(-2px);
+  }
+
+  /* MOBILE NAV ITEM */
+  .nav-mobile {
+    border-radius: var(--radius-mobile);
+    box-shadow: var(--shadow-elevated);
+    margin-bottom: 12px;
+    transition: var(--motion-transition);
+  }
+
+  .nav-mobile:hover {
+    transform: var(--motion-hover-rise);
+  }
+
+  .nav-mobile.active {
+    box-shadow: var(--shadow-deep);
+  }
+
+  /* BRAND BLOCK */
+  .brand-block {
+    border-radius: var(--radius-primary);
+    box-shadow: var(--shadow-cathedral);
+    transition: var(--motion-transition);
+  }
+
+  .brand-block:hover {
+    transform: var(--motion-hover-rise);
+  }
+
+  .brand-block:active {
+    transform: var(--motion-press-depth);
+  }
+
+  /* IMAGE FRAME */
+  .image-frame {
+    border-radius: var(--radius-primary);
+    box-shadow: var(--shadow-deep);
+    overflow: hidden;
+    transition: var(--motion-transition);
+  }
+
+  .image-frame:hover {
+    box-shadow: var(--shadow-cathedral);
+    transform: var(--motion-hover-rise);
+  }
+
+  /* INSTITUTIONAL BUTTON */
+  .btn-institutional {
+    @apply px-8 py-4 text-sm uppercase tracking-widest font-medium;
+    background: transparent;
+    border: 1px solid hsl(var(--foreground));
+    color: hsl(var(--foreground));
+    box-shadow: var(--shadow-elevated);
+    border-radius: var(--radius-primary);
+    transition: var(--motion-transition);
+  }
+
+  .btn-institutional:hover {
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
+    transform: var(--motion-hover-rise);
+    box-shadow: var(--shadow-deep);
+  }
+
+  .btn-institutional:active {
+    transform: var(--motion-press-depth);
+  }
+
+  /* PRIMARY BUTTON VARIANT */
+  .btn-primary-sculptural {
+    @apply px-8 py-4 text-sm uppercase tracking-widest font-medium;
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
+    box-shadow: var(--shadow-deep);
+    border-radius: var(--radius-primary);
+    transition: var(--motion-transition);
+  }
+
+  .btn-primary-sculptural:hover {
+    transform: var(--motion-hover-rise);
+    box-shadow: var(--shadow-cathedral);
+  }
+
+  .btn-primary-sculptural:active {
+    transform: var(--motion-press-depth);
+  }
+
+  /* MASONRY GRID */
+  .masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--grid-gutter);
+  }
+
+  @media (min-width: 1024px) {
+    .masonry-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* TIMELINE */
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, hsl(var(--border)), transparent);
+  }
+
+  /* SACRED SPACING */
+  .section-sacred {
+    padding: calc(var(--spacing-sacred) * 3) var(--grid-gutter);
+  }
+
+  /* TEXT METADATA */
+  .text-metadata {
+    color: hsl(var(--foreground-muted));
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .text-footer {
+    color: hsl(var(--foreground-subtle));
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* FLOATING CHAT BUTTON */
+  .chat-button {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 50;
+    border-radius: var(--radius-primary);
+    box-shadow: var(--shadow-deep);
+    background: hsl(var(--background));
+    padding: 16px;
+    transition: var(--motion-transition);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .chat-button:hover {
+    transform: var(--motion-hover-rise);
+    box-shadow: var(--shadow-cathedral);
+  }
+
+  .chat-button:active {
+    transform: var(--motion-press-depth);
+  }
+
+  /* CHAT WINDOW */
+  .chat-window {
+    position: fixed;
+    bottom: 100px;
+    right: 32px;
+    z-index: 50;
+    width: 340px;
+    max-width: calc(100vw - 64px);
+    border-radius: var(--radius-primary);
+    box-shadow: var(--shadow-cathedral);
+    background: hsl(var(--card));
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .rise-in {
+    animation: riseIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+
+  /* Radius utilities */
+  .radius-primary {
+    border-radius: var(--radius-primary);
+  }
+
+  .radius-mobile {
+    border-radius: var(--radius-mobile);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Brown fist with punch spark effect and Kenyan flag */
+.brown-fist {
+  display: inline-block;
+  position: relative;
+  color: #8B4513; /* Brown color for the fist */
+  font-size: 1.1em;
+  margin: 0 4px;
+}
+
+/* Brown fist with splash droplet effect */
+.brown-fist {
+  display: inline-block;
+  position: relative;
+  color: #8B4513; /* Brown color for the fist */
+  font-size: 1.2em;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+/* Splash droplet effect - 4 white droplets around the fist */
+.brown-fist::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  z-index: -1;
+  opacity: 0.8;
+  background: 
+    /* 4 splash droplets at cardinal points */
+    radial-gradient(circle at 30% 50%, white 15%, transparent 15%),
+    radial-gradient(circle at 70% 50%, white 15%, transparent 15%),
+    radial-gradient(circle at 50% 30%, white 15%, transparent 15%),
+    radial-gradient(circle at 50% 70%, white 15%, transparent 15%);
+}
+
+/* KENYAN FLAG - STAND TALL AND UNAPOLOGETIC */
+.kenyan-flag-container {
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+  position: relative;
+  height: 20px; /* Tall enough to be visible */
+  min-width: 30px; /* Proper flag proportions */
+}
+
+.kenyan-flag {
+  display: inline-block;
+  height: 20px; /* TALL */
+  width: 30px; /* PROPER FLAG PROPORTIONS 3:2 ratio */
+  background: 
+    /* Kenyan flag colors in correct order */
+    linear-gradient(to bottom,
+      black 0%, black 33.33%,
+      red 33.33%, red 66.66%,
+      green 66.66%, green 100%
+    );
+  position: relative;
+  border: none !important; /* NO BORDERS */
+  box-shadow: none !important; /* NO SHADOWS */
+  border-radius: 0 !important; /* NO ROUNDING */
+}
+
+/* White shield in center with red star */
+.kenyan-flag::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+}
+
+/* Red star in center */
+.kenyan-flag::after {
+  content: '★';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  font-size: 6px;
+  line-height: 1;
+}
+
+/* Alternative: If you want to use the actual image file */
+.kenyan-flag-img {
+  display: inline-block !important;
+  height: 20px !important; /* TALL */
+  width: auto !important; /* Maintain aspect ratio */
+  max-width: 30px !important;
+  margin-left: 8px !important;
+  vertical-align: middle !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+}
+
+/* For the description display in ArtworkDetail */
+.description-content span.brown-fist {
+  position: relative;
+  display: inline-block;
+}
+
+.description-content .kenyan-flag-container,
+.description-content .kenyan-flag-img {
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+/* Ensure the description displays HTML properly */
+.description-content {
+  line-height: 1.8;
+}
+
+.description-content p {
+  margin-bottom: 1.5rem;
+}
+
+.description-content br {
+  margin-bottom: 1.5rem;
+  display: block;
+  content: "";
+}
+
+.flag-icon img {
+  width: 20px !important;
+  height: 14px !important;
+  max-width: 20px !important;
+  max-height: 14px !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+/* Responsive adjustments if needed */
+@media (max-width: 768px) {
+  .flag-icon img {
+    width: 18px !important;
+    height: 12px !important;
+    max-width: 18px !important;
+    max-height: 12px !important;
+  }
+}
+
+/* JOO WICKED PLASMA BOMBASTIK TAKE OVER STARTS HERE */
+/* index.css or globals.css */
+
+:root {
+  --plasma-primary: #0a0a1a;
+  --plasma-secondary: #1a1a3a;
+  --plasma-accent: #6c2bd9;
+  --plasma-accent-glow: #9d4edd;
+  --plasma-highlight: #00d4ff;
+  --plasma-text: #ffffff;
+  --plasma-text-dim: rgba(255, 255, 255, 0.7);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--plasma-primary);
+  color: var(--plasma-text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Navigation Styles */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 24px 0;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+
+.nav.scrolled {
+  padding: 16px 0;
+  background: rgba(10, 10, 26, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, var(--plasma-highlight), var(--plasma-accent-glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-link {
+  color: var(--plasma-text-dim);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--plasma-highlight);
+}
+
+.nav-link.active {
+  color: var(--plasma-text);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--plasma-accent), var(--plasma-highlight));
+  border-radius: 2px;
+}
+
+/* Plasma Basin Hero Styles */
+.plasma-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(circle at center, var(--plasma-secondary) 0%, var(--plasma-primary) 70%);
+}
+
+.plasma-basin {
+  position: absolute;
+  width: 140%;
+  height: 120%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 45% 55% 40% 60% / 50% 45% 55% 50%;
+  background: radial-gradient(ellipse at center, 
+    rgba(108, 43, 217, 0.15) 0%, 
+    rgba(26, 26, 58, 0.4) 40%, 
+    rgba(10, 10, 26, 0.8) 70%);
+  box-shadow: 
+    inset 0 0 100px rgba(157, 78, 221, 0.2),
+    0 0 150px rgba(108, 43, 217, 0.3);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1;
+}
+
+.plasma-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(157, 78, 221, 0.3) 0%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.plasma-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--plasma-accent-glow) 0%, transparent 70%);
+  filter: blur(2px);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 20px;
+  transition: transform 0.5s ease;
+}
+
+.hero-tag {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(108, 43, 217, 0.2);
+  border: 1px solid rgba(108, 43, 217, 0.4);
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  color: var(--plasma-highlight);
+  backdrop-filter: blur(5px);
+}
+
+.hero-headline {
+  font-size: 5.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #ffffff 0%, var(--plasma-highlight) 50%, var(--plasma-accent-glow) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 5px 15px rgba(0, 212, 255, 0.1);
+}
+
+.hero-subheadline {
+  font-size: 1.5rem;
+  color: var(--plasma-text-dim);
+  max-width: 700px;
+  margin: 0 auto 48px;
+  font-weight: 400;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  color: var(--plasma-text-dim);
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--plasma-highlight), transparent);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .hero-headline {
+    font-size: 4rem;
+  }
+  
+  .plasma-hero {
+    min-height: 700px;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-headline {
+    font-size: 3rem;
+  }
+  
+  .hero-subheadline {
+    font-size: 1.2rem;
+  }
+  
+  .plasma-hero {
+    min-height: 600px;
+  }
+  
+  .plasma-basin {
+    width: 180%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-headline {
+    font-size: 2.5rem;
+  }
+  
+  .plasma-hero {
+    min-height: 500px;
+  }
+  
+  .hero-tag {
+    font-size: 12px;
+    padding: 6px 16px;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(10px, -10px) scale(1.1); }
+  50% { transform: translate(-20px, 20px) scale(0.9); }
+  75% { transform: translate(-10px, -10px) scale(1.05); }
+}
+
+/* Add to your index.css or globals.css */
+
+/* Plasma Container - Prevents everything from being huge */
+.plasma-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Plasma Hero Base Styles */
+.plasma-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #1a1a3a 0%, #0a0a1a 70%);
+}
+
+.plasma-basin {
+  position: absolute;
+  width: 140%;
+  height: 120%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 45% 55% 40% 60% / 50% 45% 55% 50%;
+  background: radial-gradient(ellipse at center, 
+    rgba(108, 43, 217, 0.15) 0%, 
+    rgba(26, 26, 58, 0.4) 40%, 
+    rgba(10, 10, 26, 0.8) 70%);
+  box-shadow: 
+    inset 0 0 100px rgba(157, 78, 221, 0.2),
+    0 0 150px rgba(108, 43, 217, 0.3);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1;
+}
+
+.plasma-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(157, 78, 221, 0.3) 0%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.plasma-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #9d4edd 0%, transparent 70%);
+  filter: blur(2px);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+/* Plasma Hero Content */
+.plasma-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 20px;
+  transition: transform 0.5s ease;
+  max-width: 900px;
+  width: 100%;
+}
+
+.plasma-hero-tag {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(108, 43, 217, 0.2);
+  border: 1px solid rgba(108, 43, 217, 0.4);
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  color: #00d4ff;
+  backdrop-filter: blur(5px);
+}
+
+.plasma-hero-headline {
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #ffffff 0%, #00d4ff 50%, #9d4edd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 5px 15px rgba(0, 212, 255, 0.1);
+}
+
+.plasma-hero-subheadline {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+  margin: 0 auto 48px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Plasma Navigation */
+.plasma-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 24px 0;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+
+.plasma-nav.scrolled {
+  padding: 16px 0;
+  background: rgba(10, 10, 26, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.plasma-nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.plasma-logo {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, #00d4ff, #9d4edd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.plasma-nav-links {
+  display: flex;
+  gap: 32px;
+}
+
+.plasma-nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.plasma-nav-link:hover {
+  color: #00d4ff;
+}
+
+.plasma-nav-link.active {
+  color: #ffffff;
+}
+
+.plasma-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #6c2bd9, #00d4ff);
+  border-radius: 2px;
+}
+
+/* Scroll Indicator */
+.plasma-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.plasma-scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, #00d4ff, transparent);
+}
+
+/* Plasma Feature Cards */
+.plasma-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.plasma-feature-card {
+  background: rgba(26, 26, 58, 0.4);
+  border-radius: 20px;
+  padding: 40px 30px;
+  border: 1px solid rgba(108, 43, 217, 0.2);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.plasma-feature-card:hover {
+  transform: translateY(-10px);
+  border-color: #6c2bd9;
+  box-shadow: 0 20px 40px rgba(108, 43, 217, 0.2);
+}
+
+.plasma-feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 24px;
+  color: #00d4ff;
+}
+
+.plasma-feature-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.plasma-feature-desc {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+}
+
+/* Plasma Animations */
+@keyframes plasma-float {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  25% { transform: translate(15px, -15px) scale(1.1); opacity: 0.8; }
+  50% { transform: translate(-20px, 20px) scale(0.9); opacity: 0.4; }
+  75% { transform: translate(-10px, -10px) scale(1.05); opacity: 0.7; }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .plasma-hero {
+    min-height: 700px;
+  }
+  
+  .plasma-nav-links {
+    display: none;
+  }
+  
+  .plasma-feature-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .plasma-hero {
+    min-height: 600px;
+  }
+  
+  .plasma-basin {
+    width: 180%;
+    height: 100%;
+  }
+  
+  .plasma-hero-subheadline {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .plasma-hero {
+    min-height: 500px;
+  }
+  
+  .plasma-hero-tag {
+    font-size: 12px;
+    padding: 6px 16px;
+  }
+  
+  .plasma-nav-content {
+    padding: 0 15px;
+  }
+}
+
+/* Add to index.css or globals.css */
+
+/* Curved Plasma Basin Effects */
+.curved-plasma-shadow {
+  position: relative;
+}
+
+.curved-plasma-shadow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, 
+    transparent 0%,
+    rgba(0, 0, 0, 0.1) 20%,
+    rgba(0, 0, 0, 0.3) 40%,
+    rgba(0, 0, 0, 0.6) 70%,
+    rgba(0, 0, 0, 0.8) 85%,
+    rgba(0, 0, 0, 0.9) 95%
+  );
+  pointer-events: none;
+  z-index: 1;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 50% 95%, 0% 85%);
+}
+
+/* Image transition animations */
+@keyframes imageSwingIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.1) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.05) translateY(0);
+  }
+}
+
+@keyframes imageSwingOut {
+  0% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Plasma glow animations */
+@keyframes plasmaGlow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-10px) scale(1.05);
+  }
+}
+
+/* Scroll progress indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #6a0dad, #0d6aad);
+  transform-origin: 0%;
+  z-index: 100;
+}
+
+/* Responsive curve adjustments */
+@media (max-width: 768px) {
+  .curved-plasma-shadow::after {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 50% 95%, 0% 90%);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .curved-plasma-shadow::after {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 88%, 50% 95%, 0% 88%);
+  }
+}
+
+/* Add to index.css or globals.css */
+
+/* Horizontal Navigation Styles */
+.horizontal-nav-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.horizontal-nav-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.horizontal-nav-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+/* Navigation link styles */
+.nav-link-item {
+  flex-shrink: 0;
+  padding: 0.75rem 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-link-item:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link-item.active {
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+}
+
+.nav-link-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 2px;
+  background: linear-gradient(to right, #8b5cf6, #3b82f6);
+  border-radius: 1px;
+}
+
+/* Gradient fade effects */
+.scroll-fade-left {
+  mask-image: linear-gradient(to left, transparent 0%, black 20px);
+  -webkit-mask-image: linear-gradient(to left, transparent 0%, black 20px);
+}
+
+.scroll-fade-right {
+  mask-image: linear-gradient(to right, transparent 0%, black 20px);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20px);
+}
+
+/* For responsive design */
+@media (max-width: 768px) {
+  .horizontal-nav-scroll {
+    padding: 0 1rem;
+  }
+  
+  .nav-link-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .nav-link-item {
+    padding: 1rem 1.5rem;
+    min-height: 3rem;
+  }
+  
+  .horizontal-nav-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* HERE NA THE SECTION FOR DEADLIEST WICHCRAFT HERO */
+
+/* Add to your global CSS file or component */
+.plasma-inward-bend {
+  /* Inward bending effect */
+  border-radius: 32% 28% 36% 24% / 42% 38% 32% 28%;
+  transform: 
+    perspective(1200px) 
+    rotateX(8deg) 
+    rotateY(-4deg) 
+    translateZ(0) 
+    scale(0.98);
+  
+  /* Deep inward shadow for pushed-in feeling */
+  box-shadow: 
+    inset 0 40px 80px rgba(0, 0, 0, 0.8),
+    inset 0 -20px 60px rgba(0, 0, 0, 0.6),
+    inset 20px 0 40px rgba(2, 171, 236, 0.15),
+    inset -20px 0 40px rgba(157, 78, 221, 0.15),
+    0 60px 120px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  
+  /* Border gradient for depth */
+  border: 2px solid transparent;
+  background: 
+    linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
+    linear-gradient(
+      135deg, 
+      rgba(2, 171, 236, 0.3) 0%, 
+      rgba(157, 78, 221, 0.3) 25%, 
+      rgba(0, 212, 255, 0.3) 50%, 
+      rgba(2, 171, 236, 0.3) 75%, 
+      rgba(157, 78, 221, 0.3) 100%
+    ) border-box;
+  
+  /* Animation for subtle pulse */
+  animation: plasma-pulse 8s ease-in-out infinite;
+  
+  /* Clip the image to follow the inward bend */
+  overflow: hidden;
+  position: relative;
+}
+
+/* Image inside gets pushed-in distortion */
+.plasma-inward-bend img {
+  transform: 
+    scale(1.1) 
+    translateY(-2%) 
+    translateX(1%);
+  filter: 
+    brightness(1.05) 
+    contrast(1.1) 
+    saturate(1.15);
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effect - intensifies the inward sensation */
+.plasma-inward-bend:hover {
+  transform: 
+    perspective(1200px) 
+    rotateX(12deg) 
+    rotateY(-6deg) 
+    translateZ(-20px) 
+    scale(0.95);
+  
+  box-shadow: 
+    inset 0 60px 120px rgba(0, 0, 0, 1),
+    inset 0 -30px 80px rgba(0, 0, 0, 0.8),
+    inset 30px 0 60px rgba(2, 171, 236, 0.25),
+    inset -30px 0 60px rgba(157, 78, 221, 0.25),
+    0 80px 160px rgba(0, 0, 0, 1),
+    0 0 0 2px rgba(255, 255, 255, 0.08);
+}
+
+.plasma-inward-bend:hover img {
+  transform: 
+    scale(1.15) 
+    translateY(-4%) 
+    translateX(2%);
+  filter: 
+    brightness(1.1) 
+    contrast(1.2) 
+    saturate(1.25);
+}
+
+/* Gradient overlay for depth */
+.plasma-inward-bend::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(
+      ellipse at 30% 20%,
+      rgba(2, 171, 236, 0.15) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 70% 80%,
+      rgba(157, 78, 221, 0.15) 0%,
+      transparent 60%
+    );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Floating particles effect */
+.plasma-inward-bend::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.3) 50%, transparent 100%),
+    radial-gradient(2px 2px at 40% 70%, rgba(2, 171, 236, 0.4) 50%, transparent 100%),
+    radial-gradient(3px 3px at 60% 20%, rgba(157, 78, 221, 0.4) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 80% 50%, rgba(255, 255, 255, 0.2) 50%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 30% 80%, rgba(0, 212, 255, 0.4) 50%, transparent 100%);
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: particles-float 12s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.plasma-inward-bend:hover::after {
+  opacity: 0.6;
+}
+
+/* Deep dark shadow under the frame */
+.plasma-shadow {
+  position: absolute;
+  width: 90%;
+  height: 60px;
+  bottom: -40px;
+  left: 5%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0) 80%
+  );
+  filter: blur(20px);
+  z-index: -1;
+  transform: scaleY(0.8);
+  opacity: 0.8;
+}
+
+.plasma-inward-bend:hover + .plasma-shadow {
+  width: 95%;
+  height: 80px;
+  bottom: -50px;
+  filter: blur(30px);
+  opacity: 1;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0) 85%
+  );
+}
+
+/* Animations */
+@keyframes plasma-pulse {
+  0%, 100% {
+    border-radius: 32% 28% 36% 24% / 42% 38% 32% 28%;
+    box-shadow: 
+      inset 0 40px 80px rgba(0, 0, 0, 0.8),
+      inset 0 -20px 60px rgba(0, 0, 0, 0.6),
+      inset 20px 0 40px rgba(2, 171, 236, 0.15),
+      inset -20px 0 40px rgba(157, 78, 221, 0.15),
+      0 60px 120px rgba(0, 0, 0, 0.9);
+  }
+  50% {
+    border-radius: 28% 32% 24% 36% / 38% 42% 28% 32%;
+    box-shadow: 
+      inset 0 40px 80px rgba(0, 0, 0, 0.85),
+      inset 0 -20px 60px rgba(0, 0, 0, 0.65),
+      inset 22px 0 42px rgba(2, 171, 236, 0.18),
+      inset -22px 0 42px rgba(157, 78, 221, 0.18),
+      0 65px 130px rgba(0, 0, 0, 0.95);
+  }
+}
+
+@keyframes particles-float {
+  0% {
+    background-position: 
+      20% 30%,
+      40% 70%,
+      60% 20%,
+      80% 50%,
+      30% 80%;
+  }
+  25% {
+    background-position: 
+      25% 35%,
+      45% 75%,
+      65% 25%,
+      85% 55%,
+      35% 85%;
+  }
+  50% {
+    background-position: 
+      20% 40%,
+      40% 80%,
+      60% 30%,
+      80% 60%,
+      30% 90%;
+  }
+  75% {
+    background-position: 
+      15% 35%,
+      35% 75%,
+      55% 25%,
+      75% 55%,
+      25% 85%;
+  }
+  100% {
+    background-position: 
+      20% 30%,
+      40% 70%,
+      60% 20%,
+      80% 50%,
+      30% 80%;
+  }
+}
+
+/* ============================================= */
+/* BOMBASTIK ANIMATION FIX - DO NOT MODIFY      */
+/* ============================================= */
+
+/* CRITICAL: Animation base classes */
+.animate-fade-in {
+  animation: bombastik-fade-in 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.animate-rise {
+  animation: bombastik-rise-up 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* CRITICAL: Animation keyframes */
+@keyframes bombastik-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bombastik-rise-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CRITICAL: Stagger delays */
+.stagger-1 {
+  animation-delay: 0.1s !important;
+}
+.stagger-2 {
+  animation-delay: 0.2s !important;
+}
+.stagger-3 {
+  animation-delay: 0.3s !important;
+}
+.stagger-4 {
+  animation-delay: 0.4s !important;
+}
+.stagger-5 {
+  animation-delay: 0.5s !important;
+}
+
+/* CRITICAL: Ensure animations complete */
+.animate-fade-in,
+.animate-rise {
+  animation-fill-mode: forwards !important;
+}
+
+/* No motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-rise {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* JOOOOOOOOO SEE THIS NOW */
+
+/* ENGRAVED EFFECT - ORIGINAL */
+.engraved {
+  background: linear-gradient(145deg, var(--background), var(--muted));
+  box-shadow: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.1),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.engraved:focus {
+  box-shadow: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.15),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.1),
+    0 0 0 2px rgba(var(--primary), 0.2);
+}
+
+/* BUTTONIZED EFFECT - ORIGINAL */
+.buttonized {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.buttonized:active {
+  transform: scale(0.98);
+}
+
+.buttonized::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.buttonized:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(40, 40);
+    opacity: 0;
+  }
+}
+
+/* DEEP TALL FUTURES - BOMBASTIK */
+@layer components {
+  /* TALL BUTTONS */
+  .btn-tall {
+    @apply px-8 py-6 rounded-2xl;
+    background: linear-gradient(145deg, var(--background), var(--muted));
+    box-shadow: 
+      0 12px 32px rgba(0,0,0,0.4),
+      0 0 0 1px rgba(255,255,255,0.05) inset,
+      0 1px 0 rgba(255,255,255,0.1);
+  }
+  
+  .btn-tall:hover {
+    box-shadow: 
+      0 16px 40px rgba(0,0,0,0.5),
+      0 0 0 1px rgba(255,255,255,0.1) inset,
+      0 2px 0 rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+  }
+  
+  /* DEEP TEXTBOXES */
+  .textbox-deep {
+    @apply px-6 py-5 rounded-2xl;
+    background: linear-gradient(145deg, var(--background), color-mix(in srgb, var(--background) 90%, black 10%));
+    box-shadow: 
+      inset 4px 4px 8px rgba(0,0,0,0.3),
+      inset -4px -4px 8px rgba(255,255,255,0.05),
+      0 1px 0 rgba(255,255,255,0.05);
+    border: 2px solid var(--border);
+  }
+  
+  .textbox-deep:focus {
+    box-shadow: 
+      inset 6px 6px 12px rgba(0,0,0,0.4),
+      inset -6px -6px 12px rgba(255,255,255,0.1),
+      0 0 0 3px rgba(var(--primary), 0.2);
+    border-color: var(--primary);
+  }
+  
+  /* RADIUS CUT */
+  .radius-cut {
+    border-radius: 1.5rem;
+  }
+  
+  /* LIFT UP */
+  .lift-up {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 20px 40px rgba(0,0,0,0.4),
+      0 0 0 1px rgba(255,255,255,0.05) inset;
+  }
+  
+  /* SCROLL GOES RIGHT DOWN */
+  .scroll-down {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+  }
+  
+  .scroll-down::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .scroll-down::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.2);
+    border-radius: 5px;
+  }
+  
+  .scroll-down::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, 
+      rgba(255,255,255,0.2), 
+      rgba(255,255,255,0.1));
+    border-radius: 5px;
+    border: 2px solid rgba(0,0,0,0.3);
+  }
+}

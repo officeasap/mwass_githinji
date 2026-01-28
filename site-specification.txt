@@ -1,0 +1,304 @@
+# STUDIO 1.6 SITE SPECIFICATION
+# Version: 2.0 — Cathedral-Grade Upgrade
+# Generated: 2026-01-22
+
+================================================================================
+## 1. CSS ROOT VARIABLES
+================================================================================
+
+:root {
+  /* RADIUS STANDARDS */
+  --radius: 18px;
+  --radius-primary: 18px;
+  --radius-mobile: 16px;
+
+  /* STRONGER SCULPTURAL SHADOW DOCTRINE */
+  --shadow-elevated: 0 6px 16px rgba(0, 0, 0, 0.45);
+  --shadow-deep: 0 10px 28px rgba(0, 0, 0, 0.55);
+  --shadow-cathedral: 0 14px 36px rgba(0, 0, 0, 0.65);
+  --shadow-inset: inset 0 3px 8px rgba(0, 0, 0, 0.5);
+  --shadow-engraved: inset 0 4px 12px rgba(0, 0, 0, 0.5);
+
+  /* KINETIC MOTION DOCTRINE */
+  --motion-hover-rise: translateY(-4px) scale(1.02);
+  --motion-press-depth: translateY(2px) scale(0.98);
+  --motion-transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* SACRED GEOMETRY */
+  --grid-gutter: 24px;
+  --spacing-sacred: 32px;
+
+  /* COLOR PALETTE (HSL Format) */
+  --background: 40 4% 11%;           /* #1C1C1A */
+  --background-secondary: 40 4% 13%; /* #232321 */
+  --foreground: 40 10% 90%;          /* #E6E4E0 - Titles */
+  --foreground-muted: 40 6% 72%;     /* #B8B6B1 - Metadata */
+  --foreground-subtle: 40 4% 56%;    /* #8F8D88 - Footer */
+}
+
+================================================================================
+## 2. GLOBAL STYLE ENFORCEMENT RULES
+================================================================================
+
+### Typography Doctrine:
+- All H1/H2 elements: text-shadow: var(--shadow-elevated); line-height: 1.2; letter-spacing: -0.02em;
+- Font family: 'Helvetica Neue', 'Inter', sans-serif
+- H1: clamp(3rem, 8vw, 7rem), font-weight: 200
+- H2: clamp(2rem, 5vw, 4rem), font-weight: 300
+
+### Radius Application:
+- All buttons: border-radius: var(--radius-primary);
+- All icons containers: border-radius: var(--radius-primary);
+- All cards: border-radius: var(--radius-primary);
+- All inputs: border-radius: var(--radius-primary);
+- All image containers: border-radius: var(--radius-primary);
+- Mobile elements: border-radius: var(--radius-mobile);
+
+### Shadow Application:
+- Cards: box-shadow: var(--shadow-deep);
+- Cards on hover: box-shadow: var(--shadow-cathedral);
+- Inputs: box-shadow: var(--shadow-inset);
+- Elevated elements: box-shadow: var(--shadow-elevated);
+
+### Motion Behavior:
+- All interactive elements: transition: var(--motion-transition);
+- Hover state: transform: var(--motion-hover-rise);
+- Active/Press state: transform: var(--motion-press-depth);
+
+================================================================================
+## 3. HEADER COMPONENT SPECIFICATIONS
+================================================================================
+
+### Desktop Header:
+- Height: 96px (h-24)
+- Background: bg-background/95 with border-b border-border
+- Position: fixed, z-50
+
+### Logo (Brand Block):
+- Class: .brand-block
+- Styling: border-radius: var(--radius-primary); box-shadow: var(--shadow-cathedral);
+- Font: 1.4em, letter-spacing: 0.1em, uppercase
+- Text-shadow: var(--shadow-elevated)
+- Hover: transform: var(--motion-hover-rise);
+- Active: transform: var(--motion-press-depth);
+
+### Nav Items (Buttonized Pills):
+- Class: .nav-pill
+- Styling: border-radius: var(--radius-primary); box-shadow: var(--shadow-deep); padding: 12px 24px;
+- Hover: transform: var(--motion-hover-rise);
+- Active state: box-shadow: var(--shadow-cathedral); transform: translateY(-2px);
+
+### Mobile Navigation:
+- Trigger button: .buttonized with p-4
+- Nav items: .nav-mobile
+- Styling: border-radius: var(--radius-mobile); box-shadow: var(--shadow-elevated); margin-bottom: 12px;
+- Active item: box-shadow: var(--shadow-deep);
+
+================================================================================
+## 4. IMAGE DETAIL PAGE ARCHITECTURE
+================================================================================
+
+### Routing:
+- Route pattern: /artwork/:id
+- Component: src/pages/ArtworkDetail.tsx
+- Dynamic parameter: artwork ID from artworks array
+
+### Layout (Two-Column Grid):
+Left Column (Image):
+- Container class: .image-frame
+- Aspect ratio: 4/5
+- Styling: border-radius: var(--radius-primary); box-shadow: var(--shadow-deep);
+- Full width
+
+Right Column (Metadata Panel):
+- Artwork title: H1, 4xl-5xl, font-light
+- Series information (if applicable)
+- Specifications card (.card-sculptural):
+  - Dimensions
+  - Medium
+  - Price (if available)
+- Enquire button (if forSale: true)
+- "Not available" message (if forSale: false)
+
+### Related Works Section:
+- Grid: 3 columns on desktop
+- Shows 3 related artworks (excluding current)
+- Each artwork clickable to its detail page
+
+================================================================================
+## 5. SCROLLBAR IMPLEMENTATION
+================================================================================
+
+### WebKit Scrollbar:
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #232321;
+  box-shadow: var(--shadow-cathedral);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B8B6B1;
+  border-radius: 12px;
+  box-shadow: var(--shadow-inset);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9F9D99;
+}
+
+### Firefox Scrollbar:
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #B8B6B1 #232321;
+}
+
+### Scroll Position Fix:
+- Component: src/components/layout/ScrollToTop.tsx
+- Implementation: useEffect on pathname change → window.scrollTo(0, 0)
+- Integrated in App.tsx before Routes
+
+================================================================================
+## 6. FLOATING CHAT COMPONENT
+================================================================================
+
+### Position & Styling:
+- Location: fixed; bottom: 32px; right: 32px; z-index: 50;
+- Button class: .chat-button
+- Styling: border-radius: var(--radius-primary); box-shadow: var(--shadow-deep);
+- Background: hsl(var(--background))
+- Padding: 16px
+
+### Chat Window:
+- Class: .chat-window
+- Width: 340px (max-width: calc(100vw - 64px))
+- Styling: border-radius: var(--radius-primary); box-shadow: var(--shadow-cathedral);
+
+### Header:
+- Studio 1.6 logo text
+- Artist placeholder avatar (initials)
+
+### Input Field:
+- Class: .engraved (inset shadow)
+- Styling: border-radius: var(--radius-primary); box-shadow: var(--shadow-inset);
+
+### WhatsApp Integration:
+- Click-to-chat URL: https://wa.me/{PHONE_NUMBER}?text={ENCODED_MESSAGE}
+- Phone number: Configurable constant
+- Pre-filled message options via quick links
+
+================================================================================
+## 7. BUTTONIZED ELEMENTS LIST
+================================================================================
+
+### Global Classes:
+1. .buttonized - Generic buttonized styling
+2. .nav-pill - Header navigation items
+3. .nav-mobile - Mobile menu items
+4. .brand-block - Logo/brand element
+5. .image-frame - Clickable image containers
+6. .card-sculptural - Card components
+
+### Applied To:
+- All SculpturalButton variants
+- Header navigation links
+- Mobile menu toggle
+- Social media icons
+- Form submit buttons
+- Filter buttons
+- Chat button and quick links
+- Carousel navigation arrows
+- Icon containers (Mail, Phone, MapPin)
+- Series cards
+- Exhibition image cards
+
+================================================================================
+## 8. ASSET MAPPING
+================================================================================
+
+### Artwork Assets (src/assets/artworks/):
+1. visitation-of-utu.jpg
+2. rise-of-marduk.jpg
+3. journey-to-nibru.jpg
+4. ninmahs-entry.jpg
+5. iskur-and-son.jpg
+6. half-enki.jpg
+7. damkina-at-dawn.jpg
+8. damus-vision.jpg
+9. enkis-throne.jpg
+10. enlils-kingdom.jpg
+11. beasts-and-petals.jpg
+12. exhibition.jpg
+
+### Other Assets:
+- src/assets/artist-studio.jpg
+
+### External Images (Unsplash):
+- 5 artist studio images on About page
+
+================================================================================
+## 9. ADMIN FACILITY & SECURITY PROTOCOLS
+================================================================================
+
+### Authentication (Pending Implementation):
+- Single admin user: Mwass
+- Method: Username/password + OTP verification
+- OTP: 6-digit code, 5-minute expiry
+- Delivery: WhatsApp/Email
+
+### Admin Dashboard Features (Pending):
+- Upload/replace artwork images
+- Edit artwork metadata
+- Toggle "For Sale" status
+- Edit artist statement
+- Manage exhibitions
+- Upload verification entries
+- Generate unique verification links
+
+### Security Measures (Pending):
+- Password hashing (bcrypt)
+- JWT sessions with expiry
+- No source code exposure
+- No public registration
+- Rate limiting on auth endpoints
+
+================================================================================
+## 10. PWA CONFIGURATION
+================================================================================
+
+### Service Worker (Pending):
+- Offline caching strategy
+- Static asset caching
+- API response caching
+- Background sync for forms
+
+### Manifest (Pending):
+- App name: Studio 1.6
+- Theme color: #1C1C1A
+- Background color: #1C1C1A
+- Display: standalone
+- Icons: Multiple sizes
+
+### Performance Optimizations (Implemented):
+- Lazy loading for all images (loading="lazy")
+- Image optimization via build process
+- Code splitting via React Router
+- Efficient re-renders via React.memo (where applicable)
+
+================================================================================
+## CHANGELOG
+================================================================================
+
+v2.0 - 2026-01-22
+- Updated all shadow tokens to stronger values
+- Added --radius-primary (18px) and --radius-mobile (16px)
+- Buttonized all header nav items
+- Created dynamic artwork detail page route
+- Implemented custom scrollbar styling
+- Added scroll-to-top on route change
+- Created floating WhatsApp chat facility
+- Applied radius to all interactive elements
+- Generated comprehensive site specification
