@@ -36,11 +36,11 @@ export function Header() {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`nav-pill text-sm tracking-[0.2em] uppercase font-medium transition-all duration-300 px-6 py-3 rounded-full ${
+                className={`nav-pill text-sm tracking-[0.2em] uppercase font-medium transition-all duration-300 px-6 py-3 rounded-full text-[#05a7ef] hover:text-[#05a7ef]/90 ${
                   location.pathname === item.href
-                    ? "active text-foreground bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 shadow-[inset_0_2px_8px_rgba(255,255,255,0.1),0_4px_12px_rgba(0,0,0,0.3)]"
-                    : "text-foreground-muted hover:text-foreground hover:bg-accent/10 hover:shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:-translate-y-0.5"
-                } ${item.name === "Studio" ? "text-[#02abec] hover:text-[#02abec]/90" : ""}`}
+                    ? "active text-[#05a7ef] bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 shadow-[inset_0_2px_8px_rgba(255,255,255,0.1),0_0_12px_#05a7ef]"
+                    : "text-[#05a7ef] hover:bg-accent/10 hover:shadow-[0_0_12px_#05a7ef] hover:-translate-y-0.5"
+                }`}
               >
                 {item.name}
               </Link>
@@ -50,7 +50,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden buttonized p-4 bg-gradient-to-br from-background to-muted border border-border rounded-xl hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300"
+            className="lg:hidden buttonized p-4 bg-gradient-to-br from-background to-muted border border-border rounded-xl hover:shadow-[0_0_12px_#05a7ef] transition-all duration-300"
             aria-label="Toggle menu"
           >
             {isOpen ? (
@@ -70,11 +70,11 @@ export function Header() {
                   key={item.name}
                   to={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`nav-mobile px-8 py-5 text-lg tracking-[0.15em] uppercase font-medium rounded-2xl transition-all duration-300 animate-fade-in ${
+                  className={`nav-mobile px-8 py-5 text-lg tracking-[0.15em] uppercase font-medium rounded-2xl transition-all duration-300 animate-fade-in text-[#05a7ef] ${
                     location.pathname === item.href
-                      ? "active text-foreground bg-gradient-to-r from-primary/30 to-secondary/30 border border-primary/40 shadow-[inset_0_2px_12px_rgba(255,255,255,0.15)]"
-                      : "text-foreground-muted bg-background/80 hover:bg-accent/20 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:-translate-y-1"
-                  } ${item.name === "Studio" ? "text-[#02abec] border-l-4 border-[#02abec]" : ""}`}
+                      ? "active text-[#05a7ef] bg-gradient-to-r from-primary/30 to-secondary/30 border border-primary/40 shadow-[inset_0_2px_12px_rgba(255,255,255,0.15),0_0_12px_#05a7ef]"
+                      : "text-[#05a7ef] bg-background/80 hover:bg-accent/20 hover:shadow-[0_0_12px_#05a7ef] hover:-translate-y-1"
+                  }`}
                   style={{ animationDelay: `${index * 0.08}s` }}
                 >
                   {item.name}

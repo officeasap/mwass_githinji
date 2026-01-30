@@ -17,6 +17,7 @@ import Exhibitions from "@/pages/Exhibitions";
 import Contact from "@/pages/Contact";
 import Studio from "@/pages/Studio";
 import NotFound from "@/pages/NotFound";
+import AdminArtStudio from "@/pages/AdminArtStudio"; // ✅ ADD THIS LINE
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,11 @@ const App = () => {
             <Route path="/artwork/:id" element={<ArtworkDetail />} />
             <Route path="/exhibitions" element={<Exhibitions />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/studio" element={<Studio />} />
+            <Route path="/admin/art-studio" element={<AdminArtStudio />} />
+
+            {/* ✅ ADD THIS ROUTE - NO WALLS SHAKEN */}
+            <Route path="/admin/art-studio" element={<AdminArtStudio />} />
 
             {/* Catch-all */}
             <Route path="*" element={<NotFound />} />
