@@ -3,13 +3,107 @@ import React, { useState, useEffect } from 'react';
 import { MessageCircle, X, Send, ChevronRight } from 'lucide-react';
 import { whatsappService, WhatsAppContext } from '@/services/whatsappService';
 
+// Smart WhatsApp Service for Studio 1.6
+class StudioWhatsAppService {
+  private static instance: StudioWhatsAppService;
+  
+  static getInstance(): StudioWhatsAppService {
+    if (!StudioWhatsAppService.instance) {
+      StudioWhatsAppService.instance = new StudioWhatsAppService();
+    }
+    return StudioWhatsAppService.instance;
+  }
+
+  // Studio 1.6 WhatsApp Number
+  private readonly phoneNumber = '254112345678'; // Studio 1.6 number - UPDATE THIS
+
+  // SMART WhatsApp deep link that works on all devices
+  openWhatsAppDirectly(message: string): void {
+    const encodedMessage = encodeURIComponent(message);
+    
+    // WhatsApp deep link URLs
+    const whatsappAppUrl = `whatsapp://send?phone=${this.phoneNumber}&text=${encodedMessage}`;
+    const whatsappWebUrl = `https://wa.me/${this.phoneNumber}?text=${encodedMessage}`;
+    
+    // Detect device type
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      // MOBILE DEVICE - Try to open WhatsApp app directly
+      console.log('📱 Mobile device detected - attempting to open WhatsApp app');
+      
+      // Method 1: Create timeout to detect if WhatsApp opened
+      let whatsappOpened = false;
+      
+      // Store original location
+      const originalLocation = window.location.href;
+      
+      // Try to open WhatsApp directly
+      window.location.href = whatsappAppUrl;
+      
+      // Set a timeout to check if we're still on the same page
+      setTimeout(() => {
+        if (window.location.href === originalLocation && !whatsappOpened) {
+          console.log('❌ WhatsApp app not detected, falling back to web');
+          // WhatsApp not installed - open web version
+          window.open(whatsappWebUrl, '_blank', 'noopener,noreferrer');
+        }
+      }, 500);
+      
+      // Method 2: Create invisible iframe as backup
+      setTimeout(() => {
+        try {
+          const iframe = document.createElement('iframe');
+          iframe.style.display = 'none';
+          iframe.style.visibility = 'hidden';
+          iframe.src = whatsappAppUrl;
+          
+          iframe.onload = () => {
+            setTimeout(() => {
+              if (document.body.contains(iframe)) {
+                document.body.removeChild(iframe);
+              }
+            }, 1000);
+          };
+          
+          document.body.appendChild(iframe);
+        } catch (error) {
+          console.log('Iframe method failed, using web fallback');
+          window.open(whatsappWebUrl, '_blank', 'noopener,noreferrer');
+        }
+      }, 100);
+      
+    } else {
+      // DESKTOP DEVICE - Always open WhatsApp Web
+      console.log('💻 Desktop device detected - opening WhatsApp Web');
+      window.open(whatsappWebUrl, '_blank', 'noopener,noreferrer');
+    }
+  }
+
+  // For users without WhatsApp - open download page
+  openWhatsAppDownload(): void {
+    const whatsappDownloadUrl = 'https://www.whatsapp.com/download';
+    window.open(whatsappDownloadUrl, '_blank', 'noopener,noreferrer');
+  }
+
+  // Check if WhatsApp might be installed (mobile detection)
+  isLikelyMobileWithWhatsApp(): boolean {
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  }
+}
+
+const studioWhatsAppService = StudioWhatsAppService.getInstance();
+
 const FloatingChat = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [context, setContext] = useState<WhatsAppContext | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Initialize with any stored context
+  // Check device type on mount
   useEffect(() => {
+    setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+    
     const handleGlobalOpen = () => {
       const currentContext = whatsappService.getContext();
       setContext(currentContext);
@@ -35,11 +129,28 @@ const FloatingChat = () => {
 
   const handleSend = () => {
     if (message.trim()) {
-      whatsappService.openWhatsAppDirectly(message);
+      studioWhatsAppService.openWhatsAppDirectly(message);
       setIsOpen(false);
       setMessage('');
       setContext(null);
     }
+  };
+
+  // New: Alternative send method with WhatsApp detection
+  const handleSmartSend = () => {
+    if (!message.trim()) return;
+    
+    if (isMobile) {
+      // On mobile - try to open WhatsApp directly
+      studioWhatsAppService.openWhatsAppDirectly(message);
+    } else {
+      // On desktop - open WhatsApp Web
+      studioWhatsAppService.openWhatsAppDirectly(message);
+    }
+    
+    setIsOpen(false);
+    setMessage('');
+    setContext(null);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -70,6 +181,11 @@ const FloatingChat = () => {
   const handleGeneral = () => {
     const msg = "Hello Mwass, I have a general inquiry about Studio 1.6.";
     setMessage(msg);
+  };
+
+  // WhatsApp download for users without it
+  const handleDownloadWhatsApp = () => {
+    studioWhatsAppService.openWhatsAppDownload();
   };
 
   return (
@@ -145,16 +261,27 @@ const FloatingChat = () => {
               />
             </div>
 
-            {/* Send Button */}
-            <button
-              onClick={handleSend}
-              disabled={!message.trim()}
-              className="btn-tall w-full py-4 text-foreground hover:lift-up disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-3 text-lg font-medium mb-8"
-            >
-              <Send className="w-6 h-6" />
-              CHAT ON WHATSAPP
-              <ChevronRight className="w-5 h-5 opacity-70" />
-            </button>
+            {/* SMART Send Button with Device Detection */}
+            <div className="space-y-3 mb-8">
+              <button
+                onClick={handleSmartSend}
+                disabled={!message.trim()}
+                className="btn-tall w-full py-4 text-foreground hover:lift-up disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-3 text-lg font-medium"
+              >
+                <Send className="w-6 h-6" />
+                {isMobile ? '📱 CHAT ON WHATSAPP' : '💻 OPEN WHATSAPP WEB'}
+                <ChevronRight className="w-5 h-5 opacity-70" />
+              </button>
+              
+              {/* WhatsApp Download for New Users */}
+              <button
+                onClick={handleDownloadWhatsApp}
+                className="w-full py-3 px-4 rounded-xl bg-muted/30 text-foreground-muted hover:bg-muted/50 transition-colors duration-200 flex items-center justify-center gap-2 text-sm"
+              >
+                <span className="text-xs">Don't have WhatsApp?</span>
+                <span className="font-medium text-foreground">Download Here</span>
+              </button>
+            </div>
 
             {/* Quick Links */}
             <div className="mb-8">
@@ -191,11 +318,16 @@ const FloatingChat = () => {
             {/* Footer Info */}
             <div className="pt-6 border-t border-border">
               <p className="text-xs text-center text-foreground-subtle">
-                📱 Messages will open in WhatsApp to +254 724 049 148
+                {isMobile ? '📱 Opens WhatsApp directly on your phone' : '💻 Opens WhatsApp Web in new tab'}
               </p>
               <p className="text-xs text-center text-foreground-subtle mt-1">
-                Studio 1.6 responds within 24 hours
+                {isMobile ? 'Message opens directly in WhatsApp app' : 'Requires WhatsApp Web or desktop app'}
               </p>
+              <div className="mt-2 flex items-center justify-center gap-4 text-[10px] text-foreground-muted">
+                <span>Studio 1.6 WhatsApp</span>
+                <span>•</span>
+                <span>24-hour response</span>
+              </div>
             </div>
           </div>
         </div>
