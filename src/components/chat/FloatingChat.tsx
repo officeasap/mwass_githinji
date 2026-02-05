@@ -15,7 +15,7 @@ class StudioWhatsAppService {
   }
 
   // Studio 1.6 WhatsApp Number
-  private readonly phoneNumber = '254112345678'; // Studio 1.6 number - UPDATE THIS
+  private readonly phoneNumber = '254724049148'; // Studio 1.6 number - UPDATE THIS
 
   // SMART WhatsApp deep link that works on all devices
   openWhatsAppDirectly(message: string): void {
